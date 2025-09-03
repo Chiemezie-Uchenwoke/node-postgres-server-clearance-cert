@@ -1,0 +1,1 @@
+A Node, Express and Postgres server using JWT for authentication and authorization.
