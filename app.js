@@ -14,7 +14,10 @@ await client.connect()
     .catch((err) => console.error("Database connection error:", err.stack));
 
 
-app.use(cors());
+app.use(cors({
+  origin: "http://127.0.0.1:56038",
+  credentials: true
+}));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
