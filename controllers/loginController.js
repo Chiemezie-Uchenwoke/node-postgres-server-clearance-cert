@@ -12,7 +12,6 @@ const loginUser = async (req, res, next) => {
 
     try {
         const existingUser = await client.query(`SELECT * FROM users WHERE email = $1`, [email]);
-        console.log(existingUser);
 
         if (existingUser.rows.length === 0){
             return res.status(403).json({
@@ -49,7 +48,7 @@ const loginUser = async (req, res, next) => {
                     success: true,
                     message: "Login successful!",
                     user
-                })
+                });
             }
         }
 
