@@ -3,6 +3,7 @@ import { client } from "./config/config.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFound } from "./middlewares/notFound.js";
 import { authRouter } from "./routes/authRouter.js";
+import stdRouter from "./routes/stdRouter.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -15,14 +16,17 @@ await client.connect()
 
 
 app.use(cors({
-  origin: "http://127.0.0.1:56038",
+  origin: "http://127.0.0.1:50378",
   credentials: true
 }));
+app.use(express.static("../client"));
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
 
 app.use("/auth", authRouter);
+app.use("/", stdRouter);
+
 app.use(notFound);
 app.use(errorHandler);
 

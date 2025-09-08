@@ -12,12 +12,13 @@ VALUES
 (1, 'First semester'),
 (2, 'Second semester')
 
--- level (not done)
-INSERT INTO level (id, levelOptions)
+-- level 
+INSERT INTO level(level)
 VALUES
-(1, 'First level'),
-(2, 'Second level'),
-(3, 'Third level'),
-(4, 'Fourth level'),
-(5, 'Fifth level'),
-(6, 'Sixth level')
+('100l'),
+('200l'),
+('300l'),
+('400l'),
+('500l'),
+('600l'),
+('700l');

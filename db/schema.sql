@@ -57,23 +57,23 @@ CREATE TABLE university (
 -- student
 CREATE TABLE student (
 	id SERIAL PRIMARY KEY,
-	firstName VARCHAR(100) NOT NULL,
-	middleName VARCHAR(100),
-	lastName VARCHAR(100) NOT NULL,
-	departmentID INT,
-	facultyID INT,
-	courseID INT,
-	universityID INT,
-	campusID INT,
-	matricNumber VARCHAR(40),
-	graduationYear DATE,
-	maritalName VARCHAR(50),
-	studentPhoto VARCHAR(100),
-	FOREIGN KEY (departmentID) REFERENCES department(id) ON DELETE CASCADE,
-	FOREIGN KEY (facultyID) REFERENCES faculty(id) ON DELETE CASCADE,
-	FOREIGN KEY (courseID) REFERENCES courses(id) ON DELETE CASCADE,
-	FOREIGN KEY (universityID) REFERENCES university(id) ON DELETE CASCADE,
-	FOREIGN KEY (campusID) REFERENCES campus(id) ON DELETE CASCADE
+	user_id INT NOT NULL,
+	department_id INT,
+	faculty_id INT,
+	university_id INT,
+	campus TEXT,
+	matric_number VARCHAR(40),
+	student_type VARCHAR(20),
+	number_of_levels TEXT,
+	current_level INT,
+	graduation_year INT,
+	student_photo VARCHAR(100),
+	date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+	FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE,
+	FOREIGN KEY (faculty_id) REFERENCES faculty(id) ON DELETE CASCADE,
+	FOREIGN KEY (university_id) REFERENCES university(id) ON DELETE CASCADE,
+	FOREIGN KEY (current_level) REFERENCES level(id) ON DELETE CASCADE
 );
 
 -- clearance category
@@ -105,12 +105,16 @@ CREATE TABLE semester (
 	semesterOptions VARCHAR(50)
 );
 
--- level
-CREATE TABLE level (
+-- number of level
+CREATE TABLE number_of_levels (
 	id SERIAL PRIMARY KEY,
-	levelOptions VARCHAR(50),
-	semesterID INT,
-	FOREIGN KEY (semesterID) REFERENCES semester(id)
+	level TEXT
+);
+
+-- level
+CREATE TABLE level(
+	id SERIAL PRIMARY KEY,
+	level TEXT
 );
 
 -- administrators
